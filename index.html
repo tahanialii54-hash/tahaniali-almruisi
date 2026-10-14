@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة البطاقات التعريفية الرقمية</title>
+    <!-- خطوط عربية فاخرة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- خلفية مضيئة بالألوان الكحلية والبيج -->
+    <div class="glow-bg"></div>
+
+    <!-- البطاقة الرئيسية -->
+    <div class="glass-card">
+        
+        <!-- ================= الواجهة الأولى: إدخال البيانات والترحيب ================= -->
+        <div id="stepForm" class="view-section active">
+            
+            <!-- الشريط الترحيبي المتحرك في الأعلى -->
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    ✨ مرحباً بك في منصة البطاقات التعريفية الرقمية.. ابتكر بطاقتك الذكية بلمسة زجاجية فريدة ✨
+                </div>
+            </div>
+
+            <!-- صورة ترحيبية مستطيلة أفقياً بأبعاد العرض كاملة وطول محدد -->
+            <div class="welcome-banner">
+                <img id="welcomeBannerImg" src="image/asen(2).jpg" alt="غلاف الترحيب">
+                <div class="banner-overlay">
+                    <div class="brand-logo">SPACE</div>
+                    <p>منصة إنشاء البطاقات الرقمية</p>
+                </div>
+            </div>
+
+            <!-- نموذج الإدخال -->
+            <form id="profileForm" onsubmit="generateCard(event)">
+                <div class="input-group">
+                    <label for="userName"><i class="fa-solid fa-user"></i> الاسم الكامل</label>
+                    <input type="text" id="userName" class="input-field" placeholder="مثال: فهد العتيبي" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="userAge"><i class="fa-solid fa-cake-candles"></i> العمر</label>
+                    <input type="number" id="userAge" class="input-field" placeholder="مثال: 28" min="1" max="120" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="userJob"><i class="fa-solid fa-briefcase"></i> الوظيفة</label>
+                    <input type="text" id="userJob" class="input-field" placeholder="مثال: مصمم جرافيك" required>
+                </div>
+
+                <div class="file-upload-wrapper">
+                    <label for="avatarInput" class="file-upload-label" id="fileLabel">
+                        <i class="fa-solid fa-image"></i> اختر صورة شخصية (اختياري)
+                    </label>
+                    <input type="file" id="avatarInput" accept="image/*" onchange="previewImage(event)">
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    إنشاء وعرض البطاقة <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= الواجهة الثانية: عرض البطاقة المستدعاة ================= -->
+        <div id="stepCard" class="view-section">
+            
+            <!-- شريط التنقل العلوي للبطاقة (يحتوي على زر العودة وزر التنقل بين البطاقات) -->
+            <div class="card-nav-bar">
+                <button class="btn-back" onclick="goBack()">
+                    <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+                </button>
+                <span class="card-counter" id="cardCounter">بطاقة 1 من 1</span>
+            </div>
+
+            <!-- هيدر البطاقة والصورة الشخصية -->
+            <div class="card-header">
+                <div class="avatar-container">
+                    <img id="cardAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="صورة شخصية">
+                </div>
+                <div class="space-title">SPACE</div>
+            </div>
+
+            <!-- الاسم -->
+            <div class="name-box">
+                الاسم: [<span id="cardName">فهد العتيبي</span>]
+            </div>
+
+            <!-- العمر والوظيفة -->
+            <div class="info-glass-box">
+                <div class="info-row border-bottom">
+                    العمر: <span id="cardAge">28 سنة</span>
+                </div>
+                <div class="info-row">
+                    الوظيفة: <span id="cardJob">مصمم جرافيك</span>
+                </div>
+            </div>
+
+            <!-- قائمة التفاصيل والتواصل -->
+            <div class="details-list">
+            
+            
+            
+                
+            </div>
+
+            <!-- أزرار التحكم في السجل متعدد البطاقات -->
+            <div class="multi-card-controls">
+                <button class="btn-beige" onclick="prevCard()"><i class="fa-solid fa-chevron-right"></i> السابقة</button>
+                <button class="btn-beige" onclick="nextCard()">التالية <i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+
+            <button class="btn-add-new" onclick="addNewCardMode()">
+                <i class="fa-solid fa-plus"></i> إضافة بطاقة جديدة
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- التوقيع في أقصى أسفل الصفحة -->
+    <footer>
+        <div class="signature-small">
+            تصميم تهاني المريسي
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
